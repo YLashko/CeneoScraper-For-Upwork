@@ -1,0 +1,17 @@
+{% extends "layout.html.jinja" %}
+
+{% block middle %}
+    <h2>Lista produktów</h2>
+    <ul class="list-group">
+        {% for product in products %}
+            <li class="list-group-item" display='inline-block'>
+            <a href="{{ ''.join(['https://www.ceneo.pl/',  product['id']])}}" >{{ product['name'] }}</a>
+            <a style="margin-left:20px">{{ ''.join(['Opinie:', product['number_of_opinions']]) }}</a>
+            <a style="margin-left:20px">{{ ''.join(['👍', product['pros_count']]) }}</a>
+            <a style="margin-left:20px">{{ ''.join(['👎', product['cons_count']]) }}</a>
+            <a style="margin-left:20px">{{ ''.join(['średnia:', product['score']]) }}</a>
+            <a style="margin-left:20px" href="{{ url_for('download', product_id=product['id']) }}"><button>Pobierz dane</button></a></p></li>
+        {% endfor %}
+    </ul>
+{% endblock middle %}
+
